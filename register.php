@@ -38,6 +38,11 @@ try{
         $stmt->bindParam(':password', $hashedPassword); 
         $stmt->execute(); 
 
+/* début de la session utilisateur*/
+        session_start();
+        $_SESSION['pseudo'] = $user['pseudo'];
+        header('Location: dashboard.php');
+// Inscription réussis // 
         echo "Inscription réussis"; 
 
 
