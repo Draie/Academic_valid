@@ -38,9 +38,20 @@ try{
         $stmt->bindParam(':password', $hashedPassword); 
         $stmt->execute(); 
 
+
+        /* récupère l'utlisateur */
+        $query ="SELECT * FROM users WHERE email = :email"; 
+            $stmt =$pdo->prepare($query); 
+            $stmt->bindParam(':email', $emailForm); 
+            $stmt->execute();
+            $monUser=$stmt->fetch(PDO::FETCH_ASSOC); 
+            session_start();
+        
 /* début de la session utilisateur*/
         session_start();
-        $_SESSION['pseudo'] = $user['pseudo'];
+         $_SESSION['pseudo'] = $monUser['pseudo'];
+         $_SESSION['id'] = $monUser['id'];
+  
         header('Location: dashboard.php');
 // Inscription réussis // 
         echo "Inscription réussis"; 

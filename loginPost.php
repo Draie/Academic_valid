@@ -29,7 +29,9 @@ $stmt->execute();
                 //initialisation de la session
                 //
                                     session_start();
-                                    $_SESSION['pseudo'] = $user['pseudo'];
+                                   $_SESSION['pseudo'] = $monUser['pseudo'];
+                                   $_SESSION['id'] = $monUser['id'];
+                              
                                    //viens d'etre rajouter $_SESSION['id']=$user['id'];//
                                     header('Location: dashboard.php');
 
