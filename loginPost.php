@@ -26,8 +26,17 @@ $stmt->execute();
         if($stmt->rowCount() == 1){
             $monUser=$stmt->fetch(PDO::FETCH_ASSOC); 
             if(password_verify($passwordForm, $monUser['password'])){
-                
+                //initialisation de la session
+                //
+                                    session_start();
+                                   $_SESSION['pseudo'] = $monUser['pseudo'];
+                                   $_SESSION['id'] = $monUser['id'];
+                              
+                                   //viens d'etre rajouter $_SESSION['id']=$user['id'];//
+                                    header('Location: dashboard.php');
+
                                     echo "Bienvenue ".$monUser['pseudo'];
+
                                 }
                                         else{
                                             echo"Mot de passe incorrect"; 

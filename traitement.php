@@ -2,18 +2,59 @@
 
 <?php
 require_once "header.php"; 
-$note = $_POST["note"]; 
-$name =$_POST["name"]; 
-?>
+require_once "score.php";
+$dsn ='mysql:host=localhost;dbname=academic_db'; 
+$username='root'; 
+$password='';
+session_start();
 
 
-<h2 class="responses">
-<?php
- if ($note >= 15){
-    echo " Bien joué, tu a dead ".$name." </br><a href=index.php> Revenir à l'accueil <a/>"; 
+   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $pdo =new PDO($dsn,$username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); 
+
+//Récupère la note via le formulaire du dashboard//
+//$id=0;
+$user_id= $_SESSION['id']; 
+$score = $_POST['score']; 
+$score = (string)$score;
+$comments =$_POST['comments'];
+//$dates=$_POST['dates']; a effacer plus tard
+$name =$_SESSION['pseudo'];
+$dates = (string)date('Y-m-d');
+$id =(string)uniqid();
+
+
+
+
+
+try{
+   $note = new Score( $id,$user_id, $score,$comments, $dates);
+  $insertQuery ="INSERT INTO note (id,user_id,score,comments, dates) VALUES (:id,:user_id,:score, :comments,:dates)"; 
+          $stmt= $pdo->prepare($insertQuery); 
+        $stmt->bindParam(':id',$id);
+        $stmt->bindParam(':user_id', $user_id); 
+        $stmt->bindParam(':score', $score, PDO::PARAM_INT);
+      $stmt->bindParam(':comments', $comments); 
+      $stmt->bindParam(':dates', $dates); 
+        $stmt->execute(); 
+
+
+
+}catch (Exception $e){
+  //pour si je fait un journal d'erreur//
+echo "une erreur est survenue : ".$e->getMessage();
+
+}finally{
+  
+if ($score>= 15){
+    echo " Bien joué, tu a dead ".$name." </br><a href=dashboard.php> Revenir à l'accueil <a/>"; 
    
- } elseif ($note < 15) {
-    echo" Sah, c'est pas ouf ".$name."  </br><a href=\index.php>Revenir à l'accueil <a/> "; 
+ } elseif ($score < 15) {
+    echo" Sah, c'est pas ouf ".$name."  </br><a href=\dashboard.php>Revenir à l'accueil <a/> "; 
  }
- ?>
-</h2>
+    
+
+}
+
+   }
