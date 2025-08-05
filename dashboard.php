@@ -19,23 +19,23 @@ $password='';
       $query ="SELECT * FROM note WHERE user_id = :id"; 
             $stmt =$pdo->prepare($query); 
             $stmt->bindParam(':id', $id); 
+               
             $stmt->execute();
-           
 
 
-//Affiche toutes les notes de l'utlisateur//
-            while ($histoNotes =  $stmt->fetch(PDO::FETCH_ASSOC)) {
-           
-    echo 'note : '.$histoNotes['score']. "</br>";
-     echo 'Date '. ($histoNotes['dates']) ."</br>";
-      echo 'Commentaire ' .($histoNotes['comments'])."</br>";}
+            // Suppression d'une note
+    if (isset($_GET['delete_id'])) {
+        $deleteId = $_GET['delete_id'];
+        $deleteQuery = "DELETE FROM note WHERE id = :id AND user_id = :user_id";
+        $deleteStmt = $pdo->prepare($deleteQuery);
+        $deleteStmt->bindParam(':id', $deleteId);
+        $deleteStmt->bindParam(':user_id', $id);
+        $deleteStmt->execute();
+        header("Location: dashboard.php");
+        exit;
+    }
 
-  
 ?>
-
-
-
-
 
 
 <main>
@@ -55,6 +55,38 @@ $password='';
 </form>
 
 <h4> Historique de tes notes</h4>
+<?php
 
+/*
+//Affiche toutes les notes de l'utlisateur//
+            while ($histoNotes =  $stmt->fetch(PDO::FETCH_ASSOC)) {
+           
+    echo 'note : '.$histoNotes['score']. "</br>";
+     echo 'Date '. ($histoNotes['dates']) ."</br>";
+      echo 'Commentaire ' .($histoNotes['comments'])."</br>";}
+
+*/
+?>
+<!-- Affichage des notes version CRUD--->
+<div class="note-container">
+    <?php 
+    $Notes=$stmt->fetchAll(PDO::FETCH_ASSOC);
+     foreach ($Notes as $Note) : ?>
+
+
+ <div class="note-card">
+                <p>Note: <?php echo htmlspecialchars($Note['score']); ?></p>
+                <p>Date: <?php echo htmlspecialchars($Note['dates']); ?></p>
+                <p>Commentaire: <?php echo htmlspecialchars($Note['comments']); ?></p>
+
+                <!-- Bouton de suppression -->
+                <a href="dashboard.php?delete_id=<?php echo $Note['id']; ?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette note?')">Supprimer</a>
+
+
+        
+
+</div>
+
+    <?php endforeach; ?>
 
 </main>

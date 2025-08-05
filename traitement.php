@@ -1,6 +1,7 @@
 
 
 <?php
+// CONTROLLER NOTE //
 require_once "header.php"; 
 require_once "score.php";
 $dsn ='mysql:host=localhost;dbname=academic_db'; 
@@ -19,7 +20,6 @@ $user_id= $_SESSION['id'];
 $score = $_POST['score']; 
 $score = (string)$score;
 $comments =$_POST['comments'];
-//$dates=$_POST['dates']; a effacer plus tard
 $name =$_SESSION['pseudo'];
 $dates = (string)date('Y-m-d');
 $id =(string)uniqid();
