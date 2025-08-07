@@ -48,10 +48,10 @@ echo "une erreur est survenue : ".$e->getMessage();
 }finally{
   
 if ($score>= 15){
-    echo " Bien joué, tu a dead ".$name." </br><a href=dashboard.php> Revenir à l'accueil <a/>"; 
+    echo " Bien joué, tu a dead ".$name." </br><a href=dashboard.php> Revenir à l'accueil <a/></br> <br><br><div class='notif'> Note enregistré avec succès<div/> "; 
    
  } elseif ($score < 15) {
-    echo" Sah, c'est pas ouf ".$name."  </br><a href=\dashboard.php>Revenir à l'accueil <a/> "; 
+    echo" Sah, c'est pas ouf ".$name."  </br><a href=\dashboard.php>Revenir à l'accueil <a/><br><div class='notif'> Note enregistré avec succès<div/> "; 
  }
     
 

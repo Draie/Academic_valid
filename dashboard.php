@@ -1,6 +1,7 @@
 <?php
 session_start();
-echo $_SESSION['pseudo'];
+
+$pseudo_user= $_SESSION['pseudo'];
 $id=$_SESSION['id'];
 require_once "score.php";
 /*
@@ -35,24 +36,43 @@ $password='';
         exit;
     }
 
+$feuilleDeStyle = "<link rel='stylesheet' type='text/css' media='screen' href='style/add_notes_form.css'>";
+   
+require_once "header.php"; 
+echo $feuilleDeStyle;
+
 ?>
 
 
 <main>
-        <a href="logout.php">Se déconnecter</a>
-<h1> J'évalue ta note</h1>
+
+<div class="msg_sayHello">
+<?php echo "Hello ".$pseudo_user;
+?>
+</div>
 
 
-
+<div class="add_notes_form_container">
 <form class="form" method="POST" action="traitement.php">
-    <h2> Alors ta eu combien ? </h2>
+
+<div class="note_card">
      <input class ="score" type="number" placeholder="0" name ="score" min="1" max="20" required />
-     <input class="comments" type="text"placeholder="Commentaire" name="comments" required/>
-       <!--   <input class="dates" type="date" name="dates" required/> a effacer plus tard-->
+     <div class="seperation_bar"></div>
+     <div class="score_default"> 20</div>
 
     <button type="submit">Evaluer</button>
+
+         <input class="comments" type="text"placeholder="Commentaire" name="comments" required/>
+       <!--   <input class="dates" type="date" name="dates" required/> a effacer plus tard-->
+
+  
+
+</div>
     
 </form>
+
+</div>
+
 
 <h4> Historique de tes notes</h4>
 <?php
@@ -90,3 +110,7 @@ $password='';
     <?php endforeach; ?>
 
 </main>
+
+
+        <a href="logout.php">Se déconnecter</a>
+<h1> J'évalue ta note</h1>
