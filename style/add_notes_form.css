@@ -8,7 +8,117 @@
     font-weight: bold;
     font-size: 12px;
     padding-left: 10px;
+}
+main {
+    padding: 0;
+    margin: 0px;
+    max-width: fit-content;
+    
+
+}
+
+.add_notes_form_container{
+
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    width: 90vw;
+    height: 799px;
+    background-color: #DADADA;
+        font-family: 'Inter', sans-serif;
+    font-size: 24px;
+
+
+    
+}
+
+.note_card{
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    height: 260px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: max-content;
+
+}
+.add_notes_form_container form .score{
+    width: 60px;
+    height: 58px;
+    border: none;
+    text-align: center;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -ms-border-radius:5px;
+    -o-border-radius:5px;
+
+        font-family: 'Inter', sans-serif;
+    font-size: 24px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.seperation_bar{
+    background-color: #312F2F;
+    height: 2px;
+    width: 60%;
+}
 
 
 
+.add_notes_form_container form button{
+    background-color: #312F2F;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    color: #F5F5F5;
+    width: 128px;
+    height:30px;
+    border:none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.add_notes_form_container button:hover{
+    background-color: #F55D3E;
+        color: #312F2F;
+
+}
+
+
+.add_notes_form_container form .comments {
+   
+    width: 354px;
+    height: 146px;
+    margin-top: 50px;
+    background-color: #CACACA;
+    border: none;
+    color:#929191;
+    padding-left: 10px;
+    font-family: "Inter", sans-serif;
+   border-radius: 5px;
 }

@@ -1,4 +1,10 @@
 <?php
+
+$feuilleDeStyle = "<link rel='stylesheet' type='text/css' media='screen' href='style/add_notes_form.css'>";
+   echo $feuilleDeStyle;
+ require_once "header.php";
+
+
 session_start();
 
 $pseudo_user= $_SESSION['pseudo'];
@@ -36,10 +42,7 @@ $password='';
         exit;
     }
 
-$feuilleDeStyle = "<link rel='stylesheet' type='text/css' media='screen' href='style/add_notes_form.css'>";
-   
-require_once "header.php"; 
-echo $feuilleDeStyle;
+
 
 ?>
 
@@ -56,18 +59,18 @@ echo $feuilleDeStyle;
 <form class="form" method="POST" action="traitement.php">
 
 <div class="note_card">
-     <input class ="score" type="number" placeholder="0" name ="score" min="1" max="20" required />
+     <input class ="score" type="number" placeholder="_" name ="score" min="1" max="20" required />
      <div class="seperation_bar"></div>
      <div class="score_default"> 20</div>
 
     <button type="submit">Evaluer</button>
-
+</div>
          <input class="comments" type="text"placeholder="Commentaire" name="comments" required/>
        <!--   <input class="dates" type="date" name="dates" required/> a effacer plus tard-->
 
   
 
-</div>
+
     
 </form>
 
